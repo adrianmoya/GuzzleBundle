@@ -1,0 +1,21 @@
+{
+    "name": "guzzle/guzzle-bundle",
+    "type": "library",
+    "description": "Symfony2 bundle for Guzzle",
+    "keywords": ["guzzle", "symfony2", "rest", "http"],
+    "homepage": "http://github.com/guzzle/GuzzleBundle",
+    "license": "MIT",
+    "authors": [
+        {
+        "name": "Guzzle Community",
+        "homepage": "https://github.com/guzzle/GuzzleBundle/contributors"
+        }
+    ],        
+    "require": {
+        "php": ">=5.3.2",
+        "guzzle/guzzle": "v2.2.3"
+    },
+    "autoload": {
+        "psr-0": { "Guzzle/GuzzleBundle": "" }
+    },
+}
