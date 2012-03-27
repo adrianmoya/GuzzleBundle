@@ -18,4 +18,5 @@
     "autoload": {
         "psr-0": { "Guzzle/GuzzleBundle": "" }
     },
+    "target-dir": "Guzzle/GuzzleBundle"
 }
