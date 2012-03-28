@@ -1,6 +1,6 @@
 <?php
 
-namespace Ddeboer\GuzzleBundle\DependencyInjection;
+namespace Guzzle\GuzzleBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -21,12 +21,6 @@ class Configuration implements ConfigurationInterface
                             ->end()
                             ->scalarNode('configuration_file')
                                 ->defaultValue('%kernel.root_dir%/config/guzzleclients.xml')
-                            ->end()
-                            ->arrayNode('cache')
-                                ->children()
-                                    ->scalarNode('adapter')->end()
-                                    ->scalarNode('driver')->end()
-                                ->end()
                             ->end()
                         ->end()
                     ->end()
