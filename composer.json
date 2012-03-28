@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Symfony2 bundle for Guzzle",
     "keywords": ["guzzle", "symfony2", "rest", "http"],
-    "homepage": "http://github.com/guzzle/GuzzleBundle",
+    "homepage": "https://github.com/guzzle/GuzzleBundle",
     "license": "MIT",
     "authors": [
         {

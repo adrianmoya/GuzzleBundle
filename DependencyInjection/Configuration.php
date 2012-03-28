@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
                                 ->defaultValue('Guzzle\Service\ServiceBuilder')
                             ->end()
                             ->scalarNode('configuration_file')
-                                ->defaultValue('%kernel.root_dir%/config/webservices.xml')
+                                ->defaultValue('%kernel.root_dir%/config/guzzleclients.xml')
                             ->end()
                             ->arrayNode('cache')
                                 ->children()
