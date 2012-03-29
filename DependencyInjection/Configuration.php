@@ -20,7 +20,8 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('configuration_file')->defaultValue('%kernel.root_dir%/config/guzzleclients.xml')->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
 
         return $treeBuilder;                        
     }

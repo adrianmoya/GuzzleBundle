@@ -23,9 +23,13 @@ class GuzzleGuzzleExtension extends Extension
         $processor = new Processor();
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
-     
-        $container->setParameter('guzzle.service_builder.configuration_file',
-                $config['service_builder']['configuration_file']);
-    }
 
+//        $serviceBuilderConfigFile = $config['service_builder']['configuration_file'];
+//        if(!file_exists($serviceBuilderConfigFile)){
+//            throw new \InvalidArgumentException('Configuration file '.$serviceBuilderConfigFile.' doesn\'t exists');
+//        }
+        
+        $container->setParameter('guzzle.service_builder.configuration_file', $config['service_builder']['configuration_file']);
+        
+    }
 }

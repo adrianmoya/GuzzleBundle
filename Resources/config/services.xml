@@ -9,7 +9,7 @@
     </parameters>
 
     <services>
-        <service id="guzzle.service_builder" class="Guzzle\Service\ServiceBuilder">
+        <service id="guzzle.service_builder" class="Guzzle\Service\ServiceBuilder" factory-method="factory" factory-class="Guzzle\Service\ServiceBuilder">
             <argument type="string" id="guzzle.service_builder.configuration_file">%guzzle.service_builder.configuration_file%</argument>
         </service>
     </services>
