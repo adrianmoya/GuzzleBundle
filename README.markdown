@@ -1,53 +1,57 @@
-# GuzzleBundle
-## Introduction 
+Introduction 
+============
 GuzzleBundle is a Symfony2 bundle for integrating the [Guzzle PHP library](http://github.com/guzzle/guzzle) in your project.
 
 It’s not quite finished.
 
-## Installation
-Install Guzzle:
 
-    git submodule add git://github.com/guzzle/guzzle.git vendor/guzzle
+Installation
+------------
+  1. Install Guzzle and GuzzleBundle as a Git submodule:
 
-Install GuzzleBundle:
+	  $ git submodule add git://github.com/guzzle/guzzle.git vendor/guzzle/guzzle
+          $ git submodule add git://github.com/guzzle/GuzzleBundle vendor/bundles/Guzzle/GuzzleBundle
 
-    git submodule add git://github.com/ddeboer/GuzzleBundle vendor/bundles/Ddeboer/GuzzleBundle
+     Or configure your ``deps`` to include the bundle:
 
-## Autoloader
-Add Guzzle and Ddeboer namespace to your autoloader:
+          [Guzzle]
+              git=git://github.com/guzzle/guzzle.git
+              target=guzzle/guzzle
 
-    // app/autoload.php
-    $loader->registerNamespaces(array(
-		// ...
-		'Guzzle'           => __DIR__.'/../vendor/guzzle/src',
-		'Ddeboer'          => __DIR__.'/../vendor/bundles',
-		// ...
-	));
-    
-## Application kernel
-Add GuzzleBundle to your application kernel:
+          [GuzzleBundle]
+              git=git://github.com/guzzle/GuzzleBundle.git
+              target=bundles/Guzzle/GuzzleBundle
 
-    // app/AppKernel.php
-	public function registerBundles()
-	{
-		// ...
-		new Ddeboer\GuzzleBundle\DdeboerGuzzleBundle(),
-		// ...
-	}
+
+  2. Add the Guzzle and GuzzleBundle namespace to your autoloader:
+
+          // app/autoload.php
+          $loader->registerNamespaces(array(
+		'Guzzle\\GuzzleBundle' => __DIR__.'/../vendor/bundles',
+		'Guzzle'               => __DIR__.'/../vendor/guzzle/guzzle/src',
+                // your other namespaces
+          ));
+
+  3. Add this bundle to your application's kernel:
+
+          // app/AppKernel.php
+          public function registerBundles()
+          {
+              // ...
+	      new Guzzle\GuzzleBundle\GuzzleGuzzleBundle(),
+              // ...
+          }
+
+  4. Configure the `service_builder` service, and ensure that the framework is using the filesystem for session storage:
+
+          # app/config/config.yml
+	  guzzle_guzzle:
+              service_builder: ~
+
+
+  5. And add a Guzzle clients configuration file. See the [Guzzle documentation](http://guzzlephp.org/tour/using_services.html#sourcing-data-from-xml).
 	
-## Configure the Guzzle service builder
-
-	// app/config/config.yml
-	ddeboer_guzzle: 
-    service_builder:
-      configuration_file: "%kernel.root_dir%/config/webservices.xml"
-      cache: 
-        adapter: doctrine
-        driver: apc
-
-And add a Guzzle services configuration file. See the [Guzzle documentation](http://guzzlephp.org/docs/tour/using_services/#describe-clients-using-your-services-xml-file).
-	
-	// app/config/webservices.xml
+	// app/config/guzzleclients.xml
 	<?xml version="1.0" ?>
 	<guzzle>
 	    <clients>
@@ -71,3 +75,11 @@ And add a Guzzle services configuration file. See the [Guzzle documentation](htt
 	        </client>
 	    </clients>
 	</guzzle>
+
+Usage
+-----
+
+In any of your app controller, use the service builder to instantiate a client:
+
+        $serviceBuilder = $this->get('guzzle.service_builder');
+	$client = $serviceBuilder->get('unfuddle');

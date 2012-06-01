@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('service_builder')
                     ->children()
-                        ->scalarNode('class')->defaultValue('Guzzle\Service\ServiceBuilder')->end()
+                        ->scalarNode('class')->defaultValue('Guzzle\Service\Builder\ServiceBuilder')->end()
                         ->scalarNode('configuration_file')->defaultValue('%kernel.root_dir%/config/guzzleclients.xml')->end()
                     ->end()
                 ->end()
