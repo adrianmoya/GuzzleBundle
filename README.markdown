@@ -27,8 +27,8 @@ Installation
 
           // app/autoload.php
           $loader->registerNamespaces(array(
-		'Guzzle\\GuzzleBundle' => __DIR__.'/../vendor/bundles',
-		'Guzzle'               => __DIR__.'/../vendor/guzzle/guzzle/src',
+                'Guzzle\\GuzzleBundle' => __DIR__.'/../vendor/bundles',
+                'Guzzle'               => __DIR__.'/../vendor/guzzle/guzzle/src',
                 // your other namespaces
           ));
 
@@ -38,43 +38,43 @@ Installation
           public function registerBundles()
           {
               // ...
-	      new Guzzle\GuzzleBundle\GuzzleGuzzleBundle(),
+              new Guzzle\GuzzleBundle\GuzzleGuzzleBundle(),
               // ...
           }
 
   4. Configure the `service_builder` service, and ensure that the framework is using the filesystem for session storage:
 
           # app/config/config.yml
-	  guzzle_guzzle:
+          guzzle_guzzle:
               service_builder: ~
 
 
   5. And add a Guzzle clients configuration file. See the [Guzzle documentation](http://guzzlephp.org/tour/using_services.html#sourcing-data-from-xml).
-	
-	// app/config/guzzleclients.xml
-	<?xml version="1.0" ?>
-	<guzzle>
-	    <clients>
-	        <!-- Abstract service to store AWS account credentials -->
-	        <client name="abstract.aws">
-	            <param name="access_key" value="12345" />
-	            <param name="secret_key" value="abcd" />
-	        </client>
-	        <!-- Amazon S3 client that extends the abstract client -->
-	        <client name="s3" classs="Guzzle.Aws.S3.S3Client" extends="abstract.aws">
-	            <param name="devpay_product_token" value="XYZ" />
-	            <param name="devpay_user_token" value="123" />
-	        </client>
-	        <client name="simple_db" class="Guzzle.Aws.SimpleDb.SimpleDbClient" extends="abstract.aws" />
-	        <client name="sqs" class="Guzzle.Aws.Sqs.SqsClient" extends="abstract.aws" />
-	        <!-- Unfuddle client -->
-	        <client name="unfuddle" class="Guzzle.Unfuddle.UnfuddleClient">
-	            <param name="username" value="test-user" />
-	            <param name="password" value="my-password" />
-	            <param name="subdomain" value="my-subdomain" />
-	        </client>
-	    </clients>
-	</guzzle>
+        
+        // app/config/guzzleclients.xml
+        <?xml version="1.0" ?>
+        <guzzle>
+            <clients>
+                <!-- Abstract service to store AWS account credentials -->
+                <client name="abstract.aws">
+                    <param name="access_key" value="12345" />
+                    <param name="secret_key" value="abcd" />
+                </client>
+                <!-- Amazon S3 client that extends the abstract client -->
+                <client name="s3" classs="Guzzle.Aws.S3.S3Client" extends="abstract.aws">
+                    <param name="devpay_product_token" value="XYZ" />
+                    <param name="devpay_user_token" value="123" />
+                </client>
+                <client name="simple_db" class="Guzzle.Aws.SimpleDb.SimpleDbClient" extends="abstract.aws" />
+                <client name="sqs" class="Guzzle.Aws.Sqs.SqsClient" extends="abstract.aws" />
+                <!-- Unfuddle client -->
+                <client name="unfuddle" class="Guzzle.Unfuddle.UnfuddleClient">
+                    <param name="username" value="test-user" />
+                    <param name="password" value="my-password" />
+                    <param name="subdomain" value="my-subdomain" />
+                </client>
+            </clients>
+        </guzzle>
 
 Usage
 -----
@@ -82,4 +82,4 @@ Usage
 In any of your app controller, use the service builder to instantiate a client:
 
         $serviceBuilder = $this->get('guzzle.service_builder');
-	$client = $serviceBuilder->get('unfuddle');
+        $client = $serviceBuilder->get('unfuddle');
