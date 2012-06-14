@@ -1,8 +1,10 @@
 <?php
-require_once $_SERVER['SYMFONY'].'/Symfony/Component/HttpFoundation/UniversalClassLoader.php';
 
-use Symfony\Component\HttpFoundation\UniversalClassLoader;
+// Ensure that composer has installed all dependencies
+if (!file_exists(dirname(__DIR__) . '/composer.lock')) {
+    die("Dependencies must be installed using composer:\n\nphp composer.phar install --dev\n\n"
+        . "See http://getcomposer.org for help with installing composer\n");
+}
 
-$loader = new UniversalClassLoader();
-$loader->registerNamespace('Symfony', $_SERVER['SYMFONY']);
-$loader->register();
+// Include the composer autoloader
+require_once dirname(__DIR__) . '/vendor/autoload.php';

@@ -4,3 +4,5 @@ catalog.xml
 .project
 .settings
 phpunit.xml
+composer.lock
+vendor/
